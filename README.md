@@ -22,7 +22,7 @@ Docker e Docker Compose instalados na sua máquina.
 
 
 ```bash
-git clone https://github.com/seu_usuario/assistai.git
+git clone https://github.com/lucasarnalves/AssistAI.git
 cd assistai
 ```
 
