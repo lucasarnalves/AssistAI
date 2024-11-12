@@ -2,11 +2,10 @@
 
 AssistAI é um assistente pessoal baseado em inteligência artificial que utiliza *Streamlit* para fornecer uma interface interativa. A aplicação se conecta a uma API de completions compatível com OpenAI, permitindo que os usuários interajam de forma simples e eficiente.
 
-
 ## Funcionalidades Principais
-Interação em Tempo Real: Os usuários podem inserir prompts e receber respostas instantaneamente.
-Baseado em IA: Utiliza um modelo de linguagem hospedado via ollama para fornecer respostas inteligentes.
-Interface Intuitiva: A aplicação é construída com Streamlit, proporcionando uma experiência de usuário amigável.
+- **Interação em Tempo Real**: Os usuários podem inserir prompts e receber respostas instantaneamente.
+- **Baseado em IA**: Utiliza um modelo de linguagem hospedado via Ollama para fornecer respostas inteligentes.
+- **Interface Intuitiva**: A aplicação é construída com Streamlit, proporcionando uma experiência de usuário amigável.
 
 
 ## Instalação
@@ -14,19 +13,20 @@ Siga os passos abaixo para instalar e executar o AssistAI:
 
 ### Pré-requisitos
 
-Docker e Docker Compose instalados na sua máquina.
+[Docker e Docker Compose](https://www.docker.com/get-started/) instalados na sua máquina. 
 
 #### Passos de Instalação
 
-1 - Clone o Repositório:
+1. **Clone o Repositório:**
 
 
 ```bash
 git clone https://github.com/lucasarnalves/AssistAI.git
-cd assistai
+cd AssistAI
 ```
 
-2 - Estrutura de Diretórios: Certifique-se de que a estrutura de diretórios está correta:
+2. **Estrutura de Diretórios:**
+Certifique-se de que a estrutura de diretórios está correta:
 
 ```
 assistai/
@@ -42,20 +42,27 @@ assistai/
 └── README.md
 ```
 
-3 - Modifique o arquivo '.env.exemple' para selecionar o modelo ollama a ser utilizado e renomeie para .env
+3. Modifique o arquivo **'.env.exemple'** para selecionar o modelo ollama a ser utilizado e renomeie para .env
 
 ```bash
 mv .env.exemple .env
 ```
 
-4 - Construir e Subir a Aplicação: Execute o seguinte comando para construir as imagens e iniciar os contêineres:
+4. **Ajuste as Permissões do Script:**
+Após clonar o repositório, é necessário garantir que o script start_ollama.sh tenha permissões de execução:
+
+```bash
+chmod +x start_ollama.sh
+```
+
+5. **Construir e Subir a Aplicação:** Execute o seguinte comando para construir as imagens e iniciar os contêineres:
 
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
-5- Acessar a Aplicação: Abra seu navegador e acesse *http://localhost:8501* para interagir com o AssistAI.
+6. **Acessar a Aplicação:** Abra seu navegador e acesse *http://localhost:8501* para interagir com o AssistAI.
 
 
 ## Contribuições
