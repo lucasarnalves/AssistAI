@@ -1,23 +1,24 @@
 # AssistAI
 
-AssistAI é um assistente pessoal baseado em inteligência artificial que utiliza *Streamlit* para fornecer uma interface interativa. A aplicação se conecta a uma API de completions compatível com OpenAI, permitindo que os usuários interajam de forma simples e eficiente.
+AssistAI is a personal assistant based on artificial intelligence that uses **Streamlit** to provide an interactive interface. The application connects to a completions API compatible with OpenAI, allowing users to interact in a simple and efficient manner.
 
-## Funcionalidades Principais
-- **Interação em Tempo Real**: Os usuários podem inserir prompts e receber respostas instantaneamente.
-- **Baseado em IA**: Utiliza um modelo de linguagem hospedado via Ollama para fornecer respostas inteligentes.
-- **Interface Intuitiva**: A aplicação é construída com Streamlit, proporcionando uma experiência de usuário amigável.
+## Main Features
+- **Real-Time Interaction**: Users can enter prompts and receive instant responses.
+- **AI-Based**: Utilizes a language model hosted via Ollama to provide intelligent answers.
+- **Intuitive Interface**: The application is built with Streamlit, providing a user-friendly experience.
 
 
-## Instalação
-Siga os passos abaixo para instalar e executar o AssistAI:
+## Installation
+Follow the steps below to install and run AssistAI:
 
-### Pré-requisitos
+### Prerequisites
 
-[Docker e Docker Compose](https://www.docker.com/get-started/) instalados na sua máquina. 
+[Docker e Docker Compose](https://www.docker.com/get-started/) installed on your machine. 
 
-#### Passos de Instalação
+### Installation Steps
 
-1. **Clone o Repositório:**
+
+1. **Clone the Repository:**
 
 
 ```bash
@@ -25,11 +26,12 @@ git clone https://github.com/lucasarnalves/AssistAI.git
 cd AssistAI
 ```
 
-2. **Estrutura de Diretórios:**
-Certifique-se de que a estrutura de diretórios está correta:
+2. **Directory Structure:**
+
+Ensure that the directory structure is correct:
 
 ```
-assistai/
+AssistAI/
 ├── app/
 │   ├── main.py
 │   └── requirements.txt
@@ -42,29 +44,32 @@ assistai/
 └── README.md
 ```
 
-3. Modifique o arquivo **'.env.exemple'** para selecionar o modelo ollama a ser utilizado e renomeie para .env
+3. Modify the **'.env.example'** file to select the Ollama model to be used and rename it to .env
 
 ```bash
 mv .env.exemple .env
 ```
 
-4. **Ajuste as Permissões do Script:**
-Após clonar o repositório, é necessário garantir que o script start_ollama.sh tenha permissões de execução:
+4. **Adjust Script Permissions:**
+
+After cloning the repository, ensure that the *'start_ollama.sh'* script has execution permissions:
 
 ```bash
 chmod +x start_ollama.sh
 ```
 
-5. **Construir e Subir a Aplicação:** Execute o seguinte comando para construir as imagens e iniciar os contêineres:
+5. **Build and Start the Application:** 
+
+Run the following command to build the images and start the containers:
 
 
 ```bash
 docker compose up --build
 ```
 
-6. **Acessar a Aplicação:** Abra seu navegador e acesse *http://localhost:8501* para interagir com o AssistAI.
+6. **Access the Application:** Open your browser and go to *http://localhost:8501* to interact with AssistAI.
 
 
-## Contribuições
+## Contributions
 
-Sinta-se à vontade para contribuir com melhorias e novas funcionalidades. Abra um pull request ou crie uma issue para discutir suas ideias!
+Feel free to contribute improvements and new features. Open a pull request or create an issue to discuss your ideas!
