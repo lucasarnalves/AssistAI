@@ -43,7 +43,7 @@ def sidebar():
         temperature = 0.7
         max_tokens = None
     st.session_state.llm = init_llm(temperature, max_tokens)
-
+    
     display_metrics(st.session_state.usage_metadata, st.session_state.generation_time)
 
 
@@ -53,6 +53,13 @@ def display_metrics(usage_metadata, generation_time):
     output_tokens.metric("Output Tokens:", value=usage_metadata["output_tokens"])
     gen_time.metric("Generation Time (s):", value=generation_time)
 
+def generate_assistant_response():
+    messages = [
+                {"role": m["role"], "content": m["content"]}
+                for m in st.session_state.messages
+            ]
+    stream = st.session_state.llm.stream(messages)
+    return stream
 
 def stream_output(stream):
     # Initializes an empty dictionary to store the response metadata and usage metadata
@@ -75,42 +82,52 @@ def stream_output(stream):
     if usage_metadata:
         st.session_state.usage_metadata = usage_metadata
 
+def display_assistant_response(stream):
+    with st.chat_message("assistant"):
+        response = st.write_stream(stream_output(stream))
+    return response
 
-def main():
-    init_states()
-    st.title("AssistAI - Personal AI Assistant")
-
-    sidebar()
-
-    # Display chat messages from history on app rerun
-    for message in st.session_state.messages:
+def display_chat_messages(messages):
+    # Display chat messages from history
+    for message in messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # Accept user input
-    if prompt := st.chat_input("Digite seu prompt"):
+def add_message_to_history(role, content):
+    # Add message to chat history
+    st.session_state.messages.append({"role": role, "content": content})
+
+def process_user_input():
+    prompt = st.chat_input("Enter your prompt")
+
+    if prompt:
         # Add user message to chat history
-        st.session_state.messages.append({"role": "user", "content": prompt})
+        add_message_to_history("user", prompt)
 
         # Display user message in chat message container
         with st.chat_message("user"):
             st.markdown(prompt)
 
+        stream = generate_assistant_response()
+
         # Display assistant response in chat message container
-        with st.chat_message("assistant"):
-
-            messages = [
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ]
-            stream = st.session_state.llm.stream(messages)
-
-            response = st.write_stream(stream_output(stream))
+        response = display_assistant_response(stream)
 
         # Add assistant response to chat history
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        add_message_to_history("assistant", response)
+        
         st.rerun()
 
+def main():
+    st.set_page_config(page_title="AssistAI", layout="wide")
+    init_states()
+    st.title("AssistAI - Personal AI Assistant")
+
+    sidebar()
+
+    display_chat_messages(st.session_state.messages)
+    
+    process_user_input()
 
 if __name__ == "__main__":
     main()
